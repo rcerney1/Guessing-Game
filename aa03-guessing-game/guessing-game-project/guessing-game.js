@@ -1,4 +1,14 @@
-const secretNum = 42;
+const readline = require('readline');
+
+let rl = readline.createInterface(
+    process.stdin, process.stdout);
+// let r2 = readline.createInterface(
+//     process.stdin, process.stdout);
+
+
+
+const secretNum = Math.random();
+// console.log(secretNum)
 
 
 // ### checkGuess
@@ -61,6 +71,41 @@ function checkGuess(num) {
 
 //rl.question(query[, options], callback)
 
-rl.question('Enter a guess: ', (answer) => {
-    console.log(`Oh, so your favorite food is ${answer}`);
-  }); 
+
+
+var minMax = 'test';
+
+function askRange() {
+    rl.question('What is the min? ', (min) => {
+        rl.question('What is your max? ', (max) => {
+            if(min >= max) {
+                console.log('Sorry... Wrong input')
+                return askRange();
+            }
+            rl.close()
+            console.log(`Im thinking of a number between ${min} and ${max}`)
+            minMax = [Number(min), Number(max)]
+            return (Number(min), Number(max))
+        })    
+    });
+    
+}
+askRange()
+setTimeout(() => console.log(minMax), 5000)
+
+function askGuess(){
+    askRange()
+    rl.question('Enter a guess: ', (answer) => {
+        // console.log(`Oh, so your guess is ${answer}`)
+        if(checkGuess((Number(answer)))) {
+            rl.close();
+        } else {
+            //ask question again
+            return askGuess();
+        }
+    });
+} 
+
+
+
+
