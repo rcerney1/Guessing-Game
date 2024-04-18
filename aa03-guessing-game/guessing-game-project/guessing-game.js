@@ -7,7 +7,7 @@ let rl = readline.createInterface(
 
 
 
-const secretNum = Math.random();
+// const secretNum = Math.floor(Math.random() * (minMax[1] - minMax[0]) + minMax[0]);
 // console.log(secretNum)
 
 
@@ -74,6 +74,8 @@ function checkGuess(num) {
 
 
 var minMax = 'test';
+const secretNum = Math.floor(Math.random() * (minMax[1] - minMax[0]) + minMax[0]); //minMax[0] === min, minMax[1] === max
+
 
 function askRange() {
     rl.question('What is the min? ', (min) => {
